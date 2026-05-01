@@ -22,6 +22,7 @@
         --card: rgba(255, 255, 255, 0.075);
         --card-strong: rgba(255, 255, 255, 0.13);
         --shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+        --deck-font: Avenir Next, Trebuchet MS, Verdana, sans-serif;
         --color-background-secondary: rgba(255, 255, 255, 0.075);
         --color-border-primary: rgba(255, 255, 255, 0.13);
         --color-border-secondary: rgba(255, 255, 255, 0.22);
@@ -42,8 +43,15 @@
         margin: 0;
         background: var(--paper);
         color: var(--ink);
-        font-family: Avenir Next, Trebuchet MS, Verdana, sans-serif;
+        font-family: var(--deck-font);
         overflow-x: hidden;
+      }
+
+      button,
+      input,
+      textarea,
+      select {
+        font-family: var(--deck-font);
       }
 
       body::before {
