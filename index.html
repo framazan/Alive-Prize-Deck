@@ -959,7 +959,7 @@
           <div class="hero-actions reveal">
             <span class="pill">No access codes</span>
             <span class="pill">AI-personalized tutoring</span>
-            <span class="pill">Verified courseware</span>
+            <span class="pill">Verified agent-built courseware</span>
           </div>
           <p class="caption reveal">Starting with Precalculus and Calculus. Built to expand across subjects.</p>
         </div>
@@ -969,13 +969,13 @@
         <div class="slide-number">02 / 09</div>
         <div class="slide-inner">
           <div class="eyebrow reveal">Context / education infrastructure</div>
-          <h2 class="reveal">The gap is not a lack of math content. It is access, trust, and usability.</h2>
-          <p class="lede reveal">Lemma Math is a textbook website, not just a homework app: interactive explanations teach the concept, then problems let students practice it immediately.</p>
+          <h2 class="reveal">The gap in online education is not a lack of content. It is access, trust, and usability.</h2>
+          <p class="lede reveal">Lemma Math is a textbook website, not just a homework app. interactive explanations teach the concept, then problems let students practice it immediately.</p>
           <div class="stat-row reveal">
             <div class="stat-card"><b>$1.37K</b><span>average books-and-supplies budget for full-time undergraduates</span></div>
-            <div class="stat-card"><b>$1.5M+</b><span>possible annual LMS spend for large institutions on Canvas</span></div>
-            <div class="stat-card"><b>2.3/5</b><span>G2 user rating for Pearson MyLab across 48 reviews</span></div>
-            <div class="stat-card"><b>3.5/5</b><span>G2 user rating for WebAssign across 24 reviews</span></div>
+            <div class="stat-card"><b>$1.5M+</b><span>annual LMS spend for large institutions</span></div>
+            <div class="stat-card"><b>2.3/5</b><span>G2 user rating for Pearson MyLab</span></div>
+            <div class="stat-card"><b>3.5/5</b><span>G2 user rating for WebAssign</span></div>
           </div>
           <p class="source-note reveal">
             Sources: <a href="https://www.bestcolleges.com/research/average-cost-of-college-textbooks-statistics/" target="_blank" rel="noreferrer">BestColleges / College Board</a>, <a href="https://www.vendr.com/marketplace/instructure" target="_blank" rel="noreferrer">Vendr Canvas pricing benchmarks</a>, <a href="https://www.g2.com/products/mylab/reviews?qs=pros-and-cons" target="_blank" rel="noreferrer">G2 MyLab reviews</a>, and <a href="https://www.g2.com/products/webassign/reviews" target="_blank" rel="noreferrer">G2 WebAssign reviews</a>.
@@ -984,12 +984,7 @@
             <article class="card">
               <span class="num">01</span>
               <h3>Students pay for access</h3>
-              <p>Homework systems and textbook bundles often lock required practice behind paid access codes.</p>
-            </article>
-            <article class="card">
-              <span class="num">02</span>
-              <h3>No Moodle-like math layer</h3>
-              <p>Universities have open-source LMS options, but math-specific courseware remains mostly closed.</p>
+              <p>Homework systems and textbook bundles, required to participate in many university classes, often lock behind paid access codes.</p>
             </article>
             <article class="card">
               <span class="num">03</span>
@@ -1009,12 +1004,12 @@
           <div class="grid-2 reveal">
             <div>
               <p class="split-copy">The old open-textbook model is slow: write chapters, recruit reviewers, update examples, repeat.</p>
-              <p style="margin-top:22px">Lemma Math uses expert-written textbook chapters to teach agents the standard for simple explanations, then asks them to generate practice, hints, worked examples, and variants.</p>
+              <p style="margin-top:22px">Lemma Math uses a couple expert-written textbook chapters to teach agents the standard for simple explanations, then asks them to generate new chapters, practice, hints, worked examples, and variants.</p>
             </div>
             <div class="signal-stack">
               <div class="signal"><span>Professor seed content</span><b>style + rigor</b></div>
               <div class="signal"><span>Fine-tuned + RAG agents</span><b>fast expansion</b></div>
-              <div class="signal"><span>Formal verification</span><b>answer checks</b></div>
+              <div class="signal"><span>Formal verification with Lean</span><b>answer checks</b></div>
               <div class="signal"><span>Human review</span><b>pedagogy guardrail</b></div>
             </div>
           </div>
@@ -1030,8 +1025,8 @@
           <div id="loop-wrap" class="reveal" aria-label="Lemma Math learning loop diagram">
             <svg id="loop-canvas" aria-hidden="true"></svg>
             <div class="lnode seed" id="n0"><small>01</small><b>Expert chapters</b><span>professor-written foundation</span></div>
-            <div class="lnode generate" id="n1"><small>02</small><b>AI content agents</b><span>examples, hints, variants</span></div>
-            <div class="lnode verify" id="n2"><small>03</small><b>Formal checks</b><span>Lean where applicable</span></div>
+            <div class="lnode generate" id="n1"><small>02</small><b>AI content agents</b><span>explanations examples, hints, variants</span></div>
+            <div class="lnode verify" id="n2"><small>03</small><b>Formal checks on examples and textbook content</b><span>Using Lean where applicable</span></div>
             <div class="lnode practice" id="n3"><small>04</small><b>Student practice</b><span>adaptive, no-account access</span></div>
             <div class="lnode improve" id="n4"><small>05</small><b>Learning signals</b><span>weak topics improve content</span></div>
           </div>
@@ -1045,26 +1040,29 @@
           <h2 class="reveal">A generated worked example, checked before it reaches the student.</h2>
           <div class="demo-grid reveal">
             <article class="demo-screen">
-              <div class="browser-bar"><i></i><i></i><i></i><em>student.lemmamath.org / precalculus</em></div>
+              <div class="browser-bar"><i></i><i></i><i></i><em>student.lemmamath.com / precalculus</em></div>
               <span class="tag">Generated example</span>
               <h3 style="margin-top:14px">Find the domain</h3>
               <div class="formula-card" aria-label="f of x equals square root of x minus 3 over x plus 2">
                 <div class="katex-formula" data-katex="f(x)=\frac{\sqrt{x-3}}{x+2}">f(x)=sqrt(x-3)/(x+2)</div>
               </div>
               <div class="steps">
-                <div class="step"><b>1</b><span data-katex-display="inline" data-katex="\text{Square root: }x-3\ge 0\Rightarrow x\ge 3.">Square root: x-3 >= 0 => x >= 3.</span></div>
+                <div class="step"><b>1</b><span data-katex-display="inline" data-katex="\text{Radical: }x-3\ge 0\Rightarrow x\ge 3.">Radical: x-3 >= 0 => x >= 3.</span></div>
                 <div class="step"><b>2</b><span data-katex-display="inline" data-katex="\text{Denominator: }x+2\ne 0\Rightarrow x\ne -2.">Denominator: x+2 != 0 => x != -2.</span></div>
-                <div class="step"><b>3</b><span data-katex-display="inline" data-katex="\text{Thus domain }=[3,\infty).">Thus domain = [3, infinity).</span></div>
+                <div class="step"><b>3</b><span data-katex-display="inline" data-katex="\text{Combine: }x\ge 3\text{ and }x\ne -2\Rightarrow x\ge 3\ (\!-2\text{ is already excluded}).">Combine: x >= 3 and x != -2 => x >= 3 (−2 is already excluded).</span></div>
+                <div class="step"><b>4</b><span data-katex-display="inline" data-katex="\text{Therefore domain }=[3,\infty).">Therefore domain = [3, infinity).</span></div>
               </div>
             </article>
             <div class="demo-side">
               <div class="check-card blue-card">
                 <h3>AI tutor response</h3>
-                <p>Explains the next step in plain language and generates a similar problem if the student struggles.</p>
+                <p>Explains why each constraint exists (radicals, denominators, logs, etc.), then prompts the student to apply the same rule on the next line.</p>
+                <p>If the student is stuck, it generates a nearby variant (simpler numbers, single constraint first) and fades back to the original problem once they succeed.</p>
               </div>
               <div class="check-card orange-card">
-                <h3>Verification gate</h3>
-                <p>Formalizable answers are checked before entering the verified exercise pool; other content is routed to review.</p>
+                <h3>Adaptive analytics</h3>
+                <p>The platform tracks where students struggle: time-on-step, hint usage, retries, common wrong answers, and which explanations reduce error rates.</p>
+                <p>Those signals automatically tune mastery estimates and prioritize improvements: generate better distractors, add targeted hints, and rewrite unclear questions.</p>
               </div>
               <div class="mini-flow">
                 <span>student error</span><b>-&gt;</b><span>targeted hint</span><b>-&gt;</b><span>new variant</span>
@@ -1078,7 +1076,7 @@
         <div class="slide-number">06 / 09</div>
         <div class="slide-inner">
           <div class="eyebrow reveal">Demo / university experience</div>
-          <h2 class="reveal">Universities get a Moodle-like math platform, not another locked vendor portal.</h2>
+          <h2 class="reveal">Universities get a Moodle-like math platform they can control, not another locked vendor portal.</h2>
           <div class="grid-3 reveal">
             <article class="card">
               <span class="num">01</span>
@@ -1097,9 +1095,9 @@
             </article>
           </div>
           <div class="metric-row reveal">
-            <div class="metric"><b>Open-source</b><span>institutional trust</span></div>
-            <div class="metric"><b>Course packs</b><span>shareable modules</span></div>
-            <div class="metric"><b>LMS-ready</b><span>export/import path</span></div>
+            <div class="metric"><b>Open-source</b><span>Institutional ease</span></div>
+            <div class="metric"><b>Course packs</b><span>Shareable modules</span></div>
+            <div class="metric"><b>LMS-ready</b><span>Easily integrated into Canvas, Blackboard, etc.</span></div>
           </div>
         </div>
       </section>
@@ -1113,7 +1111,7 @@
             <article class="content-step">
               <span class="num">01</span>
               <h3>Seed</h3>
-              <p>Expert professors write foundational chapters that define the tone: short, simple, understandable.</p>
+              <p>Expert professors write foundational chapters that define the tone: short, simple, understandable. No formalisms.</p>
             </article>
             <article class="content-step">
               <span class="num">02</span>
@@ -1131,7 +1129,7 @@
               <p>Student errors and instructor feedback identify the next explanations and practice sets to strengthen.</p>
             </article>
           </div>
-          <div class="bottom-line reveal" style="border-left-color:var(--orange);background:rgba(255,148,22,0.11)">The goal is not AI-written homework. The goal is trustworthy open courseware that updates at software speed.</div>
+          <div class="bottom-line reveal" style="border-left-color:var(--orange);background:rgba(255,148,22,0.11)">The goal is not AI-written homework, but actual, easy-to-gain understanding. The goal is trustworthy open courseware that updates at software speed.</div>
         </div>
       </section>
 
@@ -1145,16 +1143,9 @@
               <img src="users_graph.png" alt="ScienceBowl.org analytics graph showing 79K total users and 3.2K average daily users.">
             </div>
             <div class="signal-stack">
-              <div class="metric big"><b>79K</b><span>total users shown in analytics</span></div>
-              <div class="metric big"><b>3.2K</b><span>average daily users shown in analytics</span></div>
-              <div class="metric big"><b>1,100+</b><span>weekly users cited in manifesto</span></div>
+              <div class="metric big"><b>79K</b><span>total unique users shown in analytics</span></div>
+              <div class="metric big"><b>3.2K</b><span>average daily users</span></div>
             </div>
-          </div>
-          <div class="credential-strip reveal">
-            <span>Davidson Academy</span>
-            <span>UNR math tutoring + TA work</span>
-            <span>Textbook chapter editing</span>
-            <span>LLM research at UNR + Stanford</span>
           </div>
         </div>
       </section>
@@ -1166,7 +1157,7 @@
           <h2 class="reveal">A free, trustworthy learning layer for any student.</h2>
           <div class="vision-grid reveal">
             <article class="vision-card">
-              <h3>Version 0.9</h3>
+              <h3>Version 1</h3>
               <p>Launch Precalculus and Calculus with clear explanations, adaptive practice, and AI tutoring.</p>
             </article>
             <article class="vision-card">
@@ -1178,7 +1169,7 @@
               <p>Extend the open-source learning model to other subjects once the content engine is proven.</p>
             </article>
           </div>
-          <p class="closing reveal">If Moodle made open LMS infrastructure credible, Lemma Math can make open math courseware credible.</p>
+          <p class="closing reveal">If Moodle made open LMS infrastructure credible, Lemma Math can make math courseware credible and cheap.</p>
         </div>
       </section>
     </main>
