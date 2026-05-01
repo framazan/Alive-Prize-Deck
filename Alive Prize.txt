@@ -1,0 +1,37 @@
+﻿What are you building?
+
+
+I’m building a website that offers an alternative to current textbooks and educational materials used in US high-schools and universities. Here’s what sets my website apart from the status quo tools: 1) no cost, and 2) the use of AI to rapidly populate new and more quality content, and 3) personalized teachers agents to create personalized topics for each. I’m building this alternative for mathematics, but I plan to expand later to other disciplines. For mathematics, my learning materials will be aligned and integrated with powerful mathematical software and AI tools, which are well-suited to the challenges of the 21st century. 
+
+
+
+
+Click to choose a file or drag here
+I learned early that more doesn’t always equate to better. Growing up between Reno classrooms and Romanian textbooks at home, I studied from a range of textbooks, many of which seemed riddled with extraneous content. 
+
+
+Before starting sixth grade, I was accepted to the Davidson Academy--a school for profoundly gifted students. At Davidson, I learned Python and Java in sixth and seventh grade. By eighth grade, I had moved on to Machine Learning and AI. In ninth grade, I worked at the UNR Math Center, where I tutored college students in precalculus, calculus, and differential equations. In tenth grade, I worked as a TA at UNR, where I ran one weekly discussion session for 20 students enrolled in Biol 304 Molecular Genetics. In eleventh grade, I edited textbook chapters of the fourth edition of “Genetic Analysis: An Integrated Approach.” I’m now taking a Statistical Learning and Neural Networks course at UNR. 
+
+
+Some things that sit with me: 
+* It is widely accepted that the cost of educational materials and textbooks in the US is quite high.
+* The majority of textbooks contain hundreds of pages, many of which focus on optional materials not even used by most instructors. Again, more does not always equate to better. 
+
+
+In these conditions I dream of building a website which provides low-cost and personalized materials adapted to the needs of each student. I have already developed sciencebowl.org for which I have tried a good number of AI tools. This summer, I plan to launch the version 0.9 of my website which will help with learning Precalculus and Calculus.
+ 
+Optional blurb:
+Why is this your life's work?
+ 
+Your corner(s) of the internet.
+ 
+Pretend to be your mom or your best friend. Brag about yourself. The five things you're most proud of (scores, awards, projects).
+1. Accepted in 6th grade at the public school for profoundly gifted students Davidson Academy, located on UNR’s campus. Here, I was able to take graduate-level university courses in biology, mathematics, and french.
+2. I’m proud of my results at national competitions: 
+- National Biology Bowl Champion in 7th and 8th grade
+- represented Nevada as state champion at the US Department of Energy Science Bowl in 8th, 10th and 11th grade; 1st place Berkeley 2026 Science Bowl invitational tournament, 2nd place Stanford 2026 Science Bowl invitational tournament
+- Placed in top 15 nationally at 2025 US Brain Bee, after winning the Nevada Brain Bee.
+3. I work as a researcher in the Yim Genomics Laboratory at UNR. I’ve collaborated with Dr. Won Yim and Dr. John Lomas to develop and train a transformer-based LLM to predict gene structure and alternative splicing directly from a DNA sequence. My work was accepted for publication in Plant Communications. Now, I’m developing a tandem-repeat finder algorithm used to create a transformer that detects transposons.
+ 
+4. I work as a researcher and volunteer in the Nigam Shah Lab at Stanford, CA. Here, I distill clinical copilots LLMs at the Stanford School of Medicine with Akshay Swaminathan to be able to be run in low-resource environments on mobile devices. This technology is currently used by Community Health Workers in Nigeria. I’ve also built LLM copilots and patients that assist and train 200+ counselors from the Vandrevala Foundation in India. I’m proud to be the co-first author on an article submitted for publication, which details our work.  
+5. I developed the best-in-class Science Bowl practice website with multiplayer features and a team management platform to help students interested in science competitions. My website has 1,100+ weekly users.

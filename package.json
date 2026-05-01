@@ -1,0 +1,10 @@
+{
+  "name": "alive-prize",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "mkdir -p dist && cp index.html users_graph.png dist/",
+    "dev": "python3 -m http.server 3030",
+    "preview": "python3 -m http.server 3030 --directory dist"
+  }
+}

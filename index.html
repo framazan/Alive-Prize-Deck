@@ -1,0 +1,1323 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lemma Math | Open Courseware Pitch</title>
+    <meta name="description" content="Lemma Math is an open-source alternative to Pearson MyMathLab for universities and independent learners.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+    <style>
+      :root {
+        --ink: #fff7e6;
+        --paper: #0b0f14;
+        --muted: rgba(255, 247, 230, 0.68);
+        --faint: rgba(255, 247, 230, 0.12);
+        --blue: #4384ff;
+        --cyan: #42d9ff;
+        --orange: #ff9416;
+        --green: #54d28e;
+        --pink: #ff5f7e;
+        --violet: #906dff;
+        --card: rgba(255, 255, 255, 0.075);
+        --card-strong: rgba(255, 255, 255, 0.13);
+        --shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+        --color-background-secondary: rgba(255, 255, 255, 0.075);
+        --color-border-primary: rgba(255, 255, 255, 0.13);
+        --color-border-secondary: rgba(255, 255, 255, 0.22);
+        --color-text-primary: var(--ink);
+        --color-text-secondary: rgba(255, 247, 230, 0.68);
+        --color-text-tertiary: rgba(255, 247, 230, 0.44);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Avenir Next, Trebuchet MS, Verdana, sans-serif;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background: #06080b;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+        background-size: 54px 54px;
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent 82%);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .deck {
+        height: 100svh;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+      }
+
+      .slide {
+        position: relative;
+        min-height: 100svh;
+        scroll-snap-align: start;
+        display: grid;
+        align-items: center;
+        padding: 42px clamp(24px, 5vw, 72px);
+        isolation: isolate;
+      }
+
+      .slide-inner {
+        width: min(1180px, 100%);
+        margin: 0 auto;
+      }
+
+      .slide-number {
+        position: absolute;
+        right: clamp(24px, 4vw, 58px);
+        top: 28px;
+        color: rgba(255, 247, 230, 0.36);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+      }
+
+      .eyebrow {
+        color: var(--orange);
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        margin-bottom: 18px;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        max-width: 1040px;
+        font-size: clamp(48px, 7.2vw, 94px);
+        line-height: 0.88;
+        letter-spacing: -0.085em;
+        font-weight: 700;
+      }
+
+      h2 {
+        max-width: 1030px;
+        font-size: clamp(32px, 4.2vw, 58px);
+        line-height: 0.94;
+        letter-spacing: -0.07em;
+        font-weight: 700;
+      }
+
+      h3 {
+        font-size: 21px;
+        line-height: 1.08;
+        letter-spacing: -0.035em;
+        font-weight: 700;
+      }
+
+      p {
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.45;
+      }
+
+      .lede {
+        max-width: 830px;
+        margin-top: 18px;
+        color: rgba(255, 247, 230, 0.82);
+        font-size: clamp(18px, 1.9vw, 24px);
+        line-height: 1.22;
+        letter-spacing: -0.035em;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 30px;
+      }
+
+      .pill,
+      .tag,
+      .nav button {
+        border: 1px solid rgba(255,255,255,0.16);
+        background: rgba(255,255,255,0.07);
+        color: var(--ink);
+        backdrop-filter: blur(18px);
+      }
+
+      .pill {
+        padding: 13px 18px;
+        border-radius: 999px;
+        font-weight: 900;
+      }
+
+      .pill:nth-child(1) {
+        color: #9cbeff;
+      }
+
+      .pill:nth-child(2) {
+        color: #ffbd68;
+      }
+
+      .pill:nth-child(3) {
+        color: #9ff0bf;
+      }
+
+      .caption {
+        margin-top: 48px;
+        color: rgba(255, 247, 230, 0.43);
+        font-size: 15px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 28px;
+      }
+
+      .stat-row {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 26px;
+      }
+
+      .stat-card {
+        padding: 17px;
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 24px;
+        background: rgba(255,255,255,0.075);
+        box-shadow: 0 18px 48px rgba(0,0,0,0.24);
+      }
+
+      .stat-card b {
+        display: block;
+        color: var(--ink);
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: -0.05em;
+      }
+
+      .stat-card span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.28;
+      }
+
+      .source-note {
+        margin-top: 12px;
+        color: rgba(255,247,230,0.48);
+        font-size: 12px;
+      }
+
+      .source-note a {
+        color: rgba(255,247,230,0.74);
+        text-decoration: underline;
+        text-decoration-color: rgba(255,247,230,0.24);
+        text-underline-offset: 3px;
+      }
+
+      .evidence-slide h2 {
+        max-width: 990px;
+        font-size: clamp(29px, 3.7vw, 50px);
+      }
+
+      .evidence-slide .lede {
+        max-width: 900px;
+        font-size: clamp(17px, 1.55vw, 21px);
+      }
+
+      .evidence-slide .grid-3 {
+        margin-top: 18px;
+      }
+
+      .evidence-slide .card {
+        min-height: 136px;
+        padding: 16px;
+      }
+
+      .evidence-slide .card .num {
+        margin-bottom: 10px;
+      }
+
+      .evidence-slide .card p {
+        font-size: 13px;
+        line-height: 1.3;
+      }
+
+      .evidence-slide .bottom-line {
+        margin-top: 16px;
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 0.82fr;
+        gap: 34px;
+        align-items: start;
+        margin-top: 28px;
+      }
+
+      .card,
+      .metric,
+      .glass,
+      .node,
+      .content-step,
+      .demo-screen,
+      .check-card {
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 28px;
+        background:
+          radial-gradient(circle at 18% 10%, rgba(255,255,255,0.11), transparent 34%),
+          linear-gradient(180deg, var(--card-strong), rgba(255,255,255,0.045));
+        box-shadow: var(--shadow);
+      }
+
+      .card {
+        min-height: 178px;
+        padding: 21px;
+      }
+
+      .card .num,
+      .content-step .num {
+        display: inline-block;
+        margin-bottom: 16px;
+        color: #8db4ff;
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+      }
+
+      .card p,
+      .content-step p {
+        margin-top: 14px;
+        font-size: 15px;
+      }
+
+      .bottom-line {
+        margin-top: 22px;
+        padding: 14px 18px;
+        border-left: 4px solid var(--blue);
+        border-radius: 18px;
+        background: rgba(67,132,255,0.11);
+        color: rgba(255, 247, 230, 0.84);
+        font-size: 16px;
+      }
+
+      .split-copy {
+        color: rgba(255, 247, 230, 0.88);
+        font-size: clamp(22px, 2.55vw, 31px);
+        line-height: 1.15;
+        letter-spacing: -0.05em;
+      }
+
+      .signal-stack {
+        display: grid;
+        gap: 14px;
+      }
+
+      .signal {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: center;
+        padding: 16px 18px;
+        border-radius: 22px;
+        background: rgba(255,255,255,0.075);
+        border: 1px solid rgba(255,255,255,0.13);
+      }
+
+      .signal span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .signal b {
+        font-size: 19px;
+      }
+
+      #slide-4 h2 {
+        font-size: clamp(24px, 2.7vw, 36px);
+      }
+
+      #slide-4 .lede {
+        max-width: 780px;
+        font-size: clamp(14px, 1.25vw, 17px);
+        margin-top: 10px;
+      }
+
+      #slide-4 .eyebrow {
+        margin-bottom: 12px;
+      }
+
+      #loop-wrap {
+        position: relative;
+        width: 100%;
+        padding: 24px 0 16px;
+      }
+
+      #loop-canvas {
+        position: absolute;
+        inset: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .lnode {
+        position: absolute;
+        background: var(--color-background-secondary);
+        border: 0.5px solid var(--color-border-primary);
+        border-radius: 12px;
+        padding: 12px 16px;
+        width: 148px;
+        box-sizing: border-box;
+        transform: translate(-50%, -50%);
+        transition: border-color 0.2s;
+        z-index: 1;
+      }
+
+      .lnode:hover {
+        border-color: var(--color-border-secondary);
+      }
+
+      .lnode small {
+        display: block;
+        font-size: 11px;
+        color: var(--color-text-tertiary);
+        font-weight: 500;
+        margin-bottom: 3px;
+        letter-spacing: 0.04em;
+      }
+
+      .lnode b {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--color-text-primary);
+        margin-bottom: 3px;
+        line-height: 1.3;
+      }
+
+      .lnode span {
+        display: block;
+        font-size: 11px;
+        color: var(--color-text-secondary);
+        line-height: 1.4;
+      }
+
+      .lnode.seed {
+        border-color: #185fa5;
+      }
+
+      .lnode.generate {
+        border-color: #0f6e56;
+      }
+
+      .lnode.verify {
+        border-color: #0f6e56;
+      }
+
+      .lnode.practice {
+        border-color: #185fa5;
+      }
+
+      .lnode.improve {
+        border-color: #0f6e56;
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: 1.08fr 0.72fr;
+        gap: 28px;
+        align-items: stretch;
+        margin-top: 24px;
+      }
+
+      .demo-screen {
+        padding: 18px;
+        background:
+          linear-gradient(160deg, rgba(67,132,255,0.24), rgba(255,255,255,0.07) 42%, rgba(255,148,22,0.16));
+      }
+
+      .browser-bar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 22px;
+      }
+
+      .browser-bar i {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.22);
+      }
+
+      .browser-bar em {
+        margin-left: 9px;
+        color: rgba(255,247,230,0.43);
+        font-size: 12px;
+        font-style: normal;
+      }
+
+      .tag {
+        display: inline-flex;
+        padding: 7px 11px;
+        border-radius: 999px;
+        color: #a9f4c7;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .formula-card {
+        margin-top: 15px;
+        padding: 18px;
+        border-radius: 22px;
+        background: rgba(0,0,0,0.24);
+        border: 1px solid rgba(255,255,255,0.13);
+      }
+
+      .katex-formula {
+        color: var(--ink);
+        font-size: 29px;
+        min-height: 62px;
+        display: grid;
+        place-items: center start;
+      }
+
+      .katex-formula .katex {
+        color: var(--ink);
+      }
+
+      .steps {
+        display: grid;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 34px 1fr;
+        gap: 10px;
+        align-items: start;
+        padding: 8px 10px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.08);
+      }
+
+      .step b {
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--blue);
+        color: #07101e;
+        font-weight: 900;
+      }
+
+      .step span {
+        color: rgba(255,247,230,0.84);
+        font-size: 12px;
+        line-height: 1.28;
+      }
+
+      .step .katex {
+        color: rgba(255,247,230,0.9);
+        font-size: 0.95em;
+      }
+
+      #slide-5 h2 {
+        font-size: clamp(24px, 2.7vw, 36px);
+      }
+
+      #slide-5 .demo-grid {
+        gap: 18px;
+        margin-top: 16px;
+      }
+
+      #slide-5 .demo-screen {
+        padding: 14px;
+      }
+
+      #slide-5 .browser-bar {
+        margin-bottom: 14px;
+      }
+
+      #slide-5 .formula-card {
+        margin-top: 10px;
+        padding: 12px;
+      }
+
+      #slide-5 .katex-formula {
+        font-size: 24px;
+        min-height: 48px;
+      }
+
+      #slide-5 .check-card {
+        padding: 14px;
+      }
+
+      #slide-5 .check-card p {
+        margin-top: 8px;
+        font-size: 14px;
+        line-height: 1.34;
+      }
+
+      #slide-5 .mini-flow {
+        padding: 12px;
+      }
+
+      #slide-5 .mini-flow span {
+        font-size: 15px;
+      }
+
+      #slide-5 .mini-flow b {
+        font-size: 18px;
+      }
+
+      .demo-side {
+        display: grid;
+        gap: 14px;
+      }
+
+      .check-card {
+        padding: 17px;
+      }
+
+      .check-card p {
+        margin-top: 11px;
+        font-size: 13px;
+      }
+
+      .blue-card {
+        background: linear-gradient(135deg, rgba(67,132,255,0.30), rgba(255,255,255,0.06));
+      }
+
+      .orange-card {
+        background: linear-gradient(135deg, rgba(255,148,22,0.30), rgba(255,255,255,0.06));
+      }
+
+      .mini-flow {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        gap: 9px;
+        align-items: center;
+        padding: 18px;
+        border-radius: 24px;
+        background: linear-gradient(135deg, rgba(84,210,142,0.18), rgba(144,109,255,0.16));
+        border: 1px solid rgba(255,255,255,0.15);
+      }
+
+      .mini-flow span {
+        text-align: center;
+        color: rgba(255,247,230,0.82);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .mini-flow b {
+        color: var(--orange);
+      }
+
+      .metric-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 22px;
+      }
+
+      .metric {
+        padding: 17px;
+      }
+
+      .metric b {
+        display: block;
+        color: var(--ink);
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: -0.045em;
+      }
+
+      .metric span {
+        display: block;
+        margin-top: 7px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .compact h2 {
+        max-width: 960px;
+        font-size: clamp(30px, 3.6vw, 46px);
+      }
+
+      .compact .grid-3 {
+        margin-top: 28px;
+      }
+
+      .compact .card {
+        min-height: 172px;
+        padding: 21px;
+      }
+
+      .compact .card p {
+        font-size: 14px;
+      }
+
+      .content-machine {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .content-step {
+        position: relative;
+        min-height: 184px;
+        padding: 18px;
+        overflow: hidden;
+      }
+
+      .content-step::after {
+        display: none;
+      }
+
+      .content-step:nth-child(1) {
+        color: var(--blue);
+      }
+
+      .content-step:nth-child(2) {
+        color: var(--orange);
+      }
+
+      .content-step:nth-child(3) {
+        color: var(--green);
+      }
+
+      .content-step:nth-child(4) {
+        color: var(--violet);
+      }
+
+      .content-step h3 {
+        color: var(--ink);
+      }
+
+      .content-step p {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .proof-grid {
+        display: grid;
+        grid-template-columns: 1.45fr 0.55fr;
+        gap: 28px;
+        align-items: center;
+        margin-top: 24px;
+      }
+
+      .graph-card {
+        overflow: hidden;
+        border-radius: 30px;
+        border: 1px solid rgba(255,255,255,0.16);
+        background: rgba(255,255,255,0.06);
+        padding: 10px;
+        box-shadow: var(--shadow);
+      }
+
+      .graph-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 21px;
+      }
+
+      .metric.big b {
+        color: #8db4ff;
+        font-size: 48px;
+      }
+
+      .credential-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .credential-strip span {
+        padding: 11px 14px;
+        border: 1px solid rgba(255,255,255,0.16);
+        border-radius: 999px;
+        background: rgba(255,255,255,0.07);
+        color: rgba(255,247,230,0.78);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .vision-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 30px;
+      }
+
+      .vision-card {
+        min-height: 156px;
+        padding: 21px;
+        border-radius: 28px;
+        border: 1px solid rgba(255,255,255,0.15);
+        background: linear-gradient(180deg, rgba(255,255,255,0.13), rgba(255,255,255,0.045));
+        box-shadow: var(--shadow);
+      }
+
+      .vision-card p {
+        margin-top: 14px;
+        font-size: 15px;
+      }
+
+      .closing {
+        max-width: 960px;
+        margin-top: 30px;
+        color: var(--ink);
+        font-size: clamp(28px, 3.4vw, 44px);
+        line-height: 1.14;
+        letter-spacing: -0.055em;
+      }
+
+      .nav {
+        position: fixed;
+        right: 20px;
+        top: 50%;
+        z-index: 20;
+        display: grid;
+        gap: 10px;
+        transform: translateY(-50%);
+      }
+
+      .nav button {
+        width: 12px;
+        height: 12px;
+        padding: 0;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: transform 180ms ease, background 180ms ease;
+      }
+
+      .nav button.active {
+        background: var(--orange);
+        transform: scale(1.45);
+      }
+
+      .progress {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 30;
+        height: 4px;
+        width: 0;
+        background: #9aa0a6;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(34px) scale(0.985);
+        transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.7,.2,1);
+      }
+
+      .slide.active .reveal {
+        opacity: 1;
+        transform: none;
+      }
+
+      .slide.active .reveal:nth-child(2) {
+        transition-delay: 80ms;
+      }
+
+      .slide.active .reveal:nth-child(3) {
+        transition-delay: 160ms;
+      }
+
+      .slide.active .reveal:nth-child(4) {
+        transition-delay: 240ms;
+      }
+
+      @keyframes pulse-ring {
+        0%, 100% {
+          opacity: 0.52;
+          transform: scale(1);
+        }
+
+        50% {
+          opacity: 0.92;
+          transform: scale(1.025);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .deck {
+          scroll-snap-type: y proximity;
+        }
+
+        .slide {
+          padding: 66px 22px;
+        }
+
+        .grid-3,
+        .stat-row,
+        .grid-2,
+        .demo-grid,
+        .metric-row,
+        .content-machine,
+        .proof-grid,
+        .vision-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .smart-art {
+          height: auto;
+          display: grid;
+          gap: 14px;
+        }
+
+        .smart-art::before {
+          display: none;
+        }
+
+        .hub,
+        .node,
+        .smart-arrow {
+          position: static;
+          width: 100%;
+          height: auto;
+          transform: none;
+        }
+
+        .nav {
+          display: none;
+        }
+
+        .graph-card img {
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress" id="progress"></div>
+    <nav class="nav" aria-label="Pitch navigation" id="nav"></nav>
+
+    <main class="deck" id="deck">
+      <section class="slide active" id="slide-1">
+        <div class="slide-number">01 / 09</div>
+        <div class="slide-inner">
+          <div class="eyebrow reveal">Lemma Math</div>
+          <h1 class="reveal">Open-source MyMathLab for everyone.</h1>
+          <p class="lede reveal">A textbook website with interactive explanations, practice problems, and AI tutoring that universities can adopt like Moodle, and students can use even when their school does not.</p>
+          <div class="hero-actions reveal">
+            <span class="pill">No access codes</span>
+            <span class="pill">AI-personalized tutoring</span>
+            <span class="pill">Verified courseware</span>
+          </div>
+          <p class="caption reveal">Starting with Precalculus and Calculus. Built to expand across subjects.</p>
+        </div>
+      </section>
+
+      <section class="slide evidence-slide" id="slide-2">
+        <div class="slide-number">02 / 09</div>
+        <div class="slide-inner">
+          <div class="eyebrow reveal">Context / education infrastructure</div>
+          <h2 class="reveal">The gap is not a lack of math content. It is access, trust, and usability.</h2>
+          <p class="lede reveal">Lemma Math is a textbook website, not just a homework app: interactive explanations teach the concept, then problems let students practice it immediately.</p>
+          <div class="stat-row reveal">
+            <div class="stat-card"><b>$1.37K</b><span>average books-and-supplies budget for full-time undergraduates</span></div>
+            <div class="stat-card"><b>$1.5M+</b><span>possible annual LMS spend for large institutions on Canvas</span></div>
+            <div class="stat-card"><b>2.3/5</b><span>G2 user rating for Pearson MyLab across 48 reviews</span></div>
+            <div class="stat-card"><b>3.5/5</b><span>G2 user rating for WebAssign across 24 reviews</span></div>
+          </div>
+          <p class="source-note reveal">
+            Sources: <a href="https://www.bestcolleges.com/research/average-cost-of-college-textbooks-statistics/" target="_blank" rel="noreferrer">BestColleges / College Board</a>, <a href="https://www.vendr.com/marketplace/instructure" target="_blank" rel="noreferrer">Vendr Canvas pricing benchmarks</a>, <a href="https://www.g2.com/products/mylab/reviews?qs=pros-and-cons" target="_blank" rel="noreferrer">G2 MyLab reviews</a>, and <a href="https://www.g2.com/products/webassign/reviews" target="_blank" rel="noreferrer">G2 WebAssign reviews</a>.
+          </p>
+          <div class="grid-3 reveal">
+            <article class="card">
+              <span class="num">01</span>
+              <h3>Students pay for access</h3>
+              <p>Homework systems and textbook bundles often lock required practice behind paid access codes.</p>
+            </article>
+            <article class="card">
+              <span class="num">02</span>
+              <h3>No Moodle-like math layer</h3>
+              <p>Universities have open-source LMS options, but math-specific courseware remains mostly closed.</p>
+            </article>
+            <article class="card">
+              <span class="num">03</span>
+              <h3>Too much, not too clear</h3>
+              <p>Lemma Math keeps the textbook role, but makes explanations interactive, adaptive, and directly connected to practice.</p>
+            </article>
+          </div>
+          <div class="bottom-line reveal"><strong>Bottom line:</strong> students need a free path to learn, and universities need a serious open-source alternative.</div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-3">
+        <div class="slide-number">03 / 09</div>
+        <div class="slide-inner">
+          <div class="eyebrow reveal">Why now</div>
+          <h2 class="reveal">AI can make open courseware scalable, but only if correctness is engineered in.</h2>
+          <div class="grid-2 reveal">
+            <div>
+              <p class="split-copy">The old open-textbook model is slow: write chapters, recruit reviewers, update examples, repeat.</p>
+              <p style="margin-top:22px">Lemma Math uses expert-written textbook chapters to teach agents the standard for simple explanations, then asks them to generate practice, hints, worked examples, and variants.</p>
+            </div>
+            <div class="signal-stack">
+              <div class="signal"><span>Professor seed content</span><b>style + rigor</b></div>
+              <div class="signal"><span>Fine-tuned + RAG agents</span><b>fast expansion</b></div>
+              <div class="signal"><span>Formal verification</span><b>answer checks</b></div>
+              <div class="signal"><span>Human review</span><b>pedagogy guardrail</b></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-4">
+        <div class="slide-number">04 / 09</div>
+        <div class="slide-inner">
+          <div class="eyebrow reveal">Product architecture</div>
+          <h2 class="reveal">The product is the learning loop.</h2>
+          <p class="lede reveal">Lemma Math is not just a problem bank. It is a governed loop that turns expert foundations into verified, personalized practice.</p>
+          <div id="loop-wrap" class="reveal" aria-label="Lemma Math learning loop diagram">
+            <svg id="loop-canvas" aria-hidden="true"></svg>
+            <div class="lnode seed" id="n0"><small>01</small><b>Expert chapters</b><span>professor-written foundation</span></div>
+            <div class="lnode generate" id="n1"><small>02</small><b>AI content agents</b><span>examples, hints, variants</span></div>
+            <div class="lnode verify" id="n2"><small>03</small><b>Formal checks</b><span>Lean where applicable</span></div>
+            <div class="lnode practice" id="n3"><small>04</small><b>Student practice</b><span>adaptive, no-account access</span></div>
+            <div class="lnode improve" id="n4"><small>05</small><b>Learning signals</b><span>weak topics improve content</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-5">
+        <div class="slide-number">05 / 09</div>
+        <div class="slide-inner">
+          <div class="eyebrow reveal">Demo / student experience</div>
+          <h2 class="reveal">A generated worked example, checked before it reaches the student.</h2>
+          <div class="demo-grid reveal">
+            <article class="demo-screen">
+              <div class="browser-bar"><i></i><i></i><i></i><em>student.lemmamath.org / precalculus</em></div>
+              <span class="tag">Generated example</span>
+              <h3 style="margin-top:14px">Find the domain</h3>
+              <div class="formula-card" aria-label="f of x equals square root of x minus 3 over x plus 2">
+                <div class="katex-formula" data-katex="f(x)=\frac{\sqrt{x-3}}{x+2}">f(x)=sqrt(x-3)/(x+2)</div>
+              </div>
+              <div class="steps">
+                <div class="step"><b>1</b><span data-katex-display="inline" data-katex="\text{Square root: }x-3\ge 0\Rightarrow x\ge 3.">Square root: x-3 >= 0 => x >= 3.</span></div>
+                <div class="step"><b>2</b><span data-katex-display="inline" data-katex="\text{Denominator: }x+2\ne 0\Rightarrow x\ne -2.">Denominator: x+2 != 0 => x != -2.</span></div>
+                <div class="step"><b>3</b><span data-katex-display="inline" data-katex="\text{Thus domain }=[3,\infty).">Thus domain = [3, infinity).</span></div>
+              </div>
+            </article>
+            <div class="demo-side">
+              <div class="check-card blue-card">
+                <h3>AI tutor response</h3>
+                <p>Explains the next step in plain language and generates a similar problem if the student struggles.</p>
+              </div>
+              <div class="check-card orange-card">
+                <h3>Verification gate</h3>
+                <p>Formalizable answers are checked before entering the verified exercise pool; other content is routed to review.</p>
+              </div>
+              <div class="mini-flow">
+                <span>student error</span><b>-&gt;</b><span>targeted hint</span><b>-&gt;</b><span>new variant</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide compact" id="slide-6">
+        <div class="slide-number">06 / 09</div>
+        <div class="slide-inner">
+          <div class="eyebrow reveal">Demo / university experience</div>
+          <h2 class="reveal">Universities get a Moodle-like math platform, not another locked vendor portal.</h2>
+          <div class="grid-3 reveal">
+            <article class="card">
+              <span class="num">01</span>
+              <h3>Self-hostable courses</h3>
+              <p>Departments can run their own instance, customize content, and avoid access-code dependency.</p>
+            </article>
+            <article class="card">
+              <span class="num">02</span>
+              <h3>Instructor dashboards</h3>
+              <p>Sections, assignments, progress, and weak-topic analytics stay visible to faculty.</p>
+            </article>
+            <article class="card">
+              <span class="num">03</span>
+              <h3>Faculty-controlled content</h3>
+              <p>AI can propose new explanations and problems, but instructors choose what enters a course.</p>
+            </article>
+          </div>
+          <div class="metric-row reveal">
+            <div class="metric"><b>Open-source</b><span>institutional trust</span></div>
+            <div class="metric"><b>Course packs</b><span>shareable modules</span></div>
+            <div class="metric"><b>LMS-ready</b><span>export/import path</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide compact" id="slide-7">
+        <div class="slide-number">07 / 09</div>
+        <div class="slide-inner">
+          <div class="eyebrow reveal">Content engine</div>
+          <h2 class="reveal">Rapid content generation with explicit verification gates.</h2>
+          <div class="content-machine reveal">
+            <article class="content-step">
+              <span class="num">01</span>
+              <h3>Seed</h3>
+              <p>Expert professors write foundational chapters that define the tone: short, simple, understandable.</p>
+            </article>
+            <article class="content-step">
+              <span class="num">02</span>
+              <h3>Generate</h3>
+              <p>Fine-tuned and RAG agents create variants, hints, examples, explanations, and assessments.</p>
+            </article>
+            <article class="content-step">
+              <span class="num">03</span>
+              <h3>Check</h3>
+              <p>Formalizable math is checked through Lean; ambiguous material goes to targeted review.</p>
+            </article>
+            <article class="content-step">
+              <span class="num">04</span>
+              <h3>Improve</h3>
+              <p>Student errors and instructor feedback identify the next explanations and practice sets to strengthen.</p>
+            </article>
+          </div>
+          <div class="bottom-line reveal" style="border-left-color:var(--orange);background:rgba(255,148,22,0.11)">The goal is not AI-written homework. The goal is trustworthy open courseware that updates at software speed.</div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-8">
+        <div class="slide-number">08 / 09</div>
+        <div class="slide-inner">
+          <div class="eyebrow reveal">Founder proof / sciencebowl.org</div>
+          <h2 class="reveal">I have already built learning infrastructure students actually use.</h2>
+          <div class="proof-grid reveal">
+            <div class="graph-card">
+              <img src="users_graph.png" alt="ScienceBowl.org analytics graph showing 79K total users and 3.2K average daily users.">
+            </div>
+            <div class="signal-stack">
+              <div class="metric big"><b>79K</b><span>total users shown in analytics</span></div>
+              <div class="metric big"><b>3.2K</b><span>average daily users shown in analytics</span></div>
+              <div class="metric big"><b>1,100+</b><span>weekly users cited in manifesto</span></div>
+            </div>
+          </div>
+          <div class="credential-strip reveal">
+            <span>Davidson Academy</span>
+            <span>UNR math tutoring + TA work</span>
+            <span>Textbook chapter editing</span>
+            <span>LLM research at UNR + Stanford</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" id="slide-9">
+        <div class="slide-number">09 / 09</div>
+        <div class="slide-inner">
+          <div class="eyebrow reveal">Vision</div>
+          <h2 class="reveal">A free, trustworthy learning layer for any student.</h2>
+          <div class="vision-grid reveal">
+            <article class="vision-card">
+              <h3>Version 0.9</h3>
+              <p>Launch Precalculus and Calculus with clear explanations, adaptive practice, and AI tutoring.</p>
+            </article>
+            <article class="vision-card">
+              <h3>Math platform</h3>
+              <p>Add more courses, instructor tools, course packs, analytics, and community-authored modules.</p>
+            </article>
+            <article class="vision-card">
+              <h3>Beyond math</h3>
+              <p>Extend the open-source learning model to other subjects once the content engine is proven.</p>
+            </article>
+          </div>
+          <p class="closing reveal">If Moodle made open LMS infrastructure credible, Lemma Math can make open math courseware credible.</p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function() {
+        const wrap = document.getElementById('loop-wrap');
+        const svg  = document.getElementById('loop-canvas');
+        const N = 5;
+        const NODE_W = 148, NODE_H = 76;
+
+        function layout() {
+          const W = wrap.offsetWidth;
+          const CX = W / 2;
+          const R  = Math.min(W * 0.34, 180);
+          const H  = R * 2 + NODE_H + 80;
+          const CY = H / 2;
+
+          wrap.style.height = H + 'px';
+          svg.setAttribute('width', W);
+          svg.setAttribute('height', H);
+
+          const angles = [];
+          const positions = [];
+
+          for (let i = 0; i < N; i++) {
+            const angle = (2 * Math.PI * i / N) - Math.PI / 2;
+            angles.push(angle);
+            const x = CX + R * Math.cos(angle);
+            const y = CY + R * Math.sin(angle);
+            positions.push({ x, y });
+
+            const el = document.getElementById('n' + i);
+            el.style.left = x + 'px';
+            el.style.top  = y + 'px';
+          }
+
+          svg.innerHTML = '';
+
+          const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+          defs.innerHTML = `<marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>`;
+          svg.appendChild(defs);
+
+          const stroke = getComputedStyle(document.documentElement)
+            .getPropertyValue('--color-border-primary').trim() || '#888';
+
+          for (let i = 0; i < N; i++) {
+            const a = positions[i];
+            const b = positions[(i + 1) % N];
+            const midAngle = (angles[i] + angles[(i + 1) % N]) / 2;
+            const pull = R * 0.28;
+            const cx1 = CX + (R + pull) * Math.cos(midAngle);
+            const cy1 = CY + (R + pull) * Math.sin(midAngle);
+
+            function edgePoint(pos, toX, toY) {
+              const ex = toX - pos.x, ey = toY - pos.y;
+              const sl = Math.sqrt(ex*ex + ey*ey);
+              const eu = { x: ex/sl, y: ey/sl };
+              const tx = 80 / Math.abs(eu.x || 0.001);
+              const ty = 44 / Math.abs(eu.y || 0.001);
+              const t  = Math.min(tx, ty);
+              return { x: pos.x + eu.x * t, y: pos.y + eu.y * t };
+            }
+
+            const start = edgePoint(a, cx1, cy1);
+            const end   = edgePoint(b, cx1, cy1);
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+            path.setAttribute('d', `M${start.x},${start.y} Q${cx1},${cy1} ${end.x},${end.y}`);
+            path.setAttribute('fill','none');
+            path.setAttribute('stroke', stroke);
+            path.setAttribute('stroke-width','1');
+            path.setAttribute('marker-end','url(#arr)');
+            svg.appendChild(path);
+          }
+        }
+
+        layout();
+        window.addEventListener('resize', layout);
+      })();
+    </script>
+
+    <script>
+      const renderMath = () => {
+        if (!window.katex) return;
+        document.querySelectorAll("[data-katex]").forEach((element) => {
+          const displayMode = element.dataset.katexDisplay !== "inline";
+          window.katex.render(element.dataset.katex, element, {
+            displayMode,
+            throwOnError: false
+          });
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", renderMath);
+      } else {
+        renderMath();
+      }
+
+      window.addEventListener("load", renderMath);
+
+      const deck = document.getElementById("deck");
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const nav = document.getElementById("nav");
+      const progress = document.getElementById("progress");
+
+      slides.forEach((slide, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.setAttribute("aria-label", `Go to slide ${index + 1}`);
+        button.addEventListener("click", () => slide.scrollIntoView({ behavior: "smooth" }));
+        nav.appendChild(button);
+      });
+
+      const buttons = Array.from(nav.querySelectorAll("button"));
+
+      const setActive = (index) => {
+        slides.forEach((slide, slideIndex) => slide.classList.toggle("active", slideIndex === index));
+        buttons.forEach((button, buttonIndex) => button.classList.toggle("active", buttonIndex === index));
+        progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(slides.indexOf(entry.target));
+          }
+        });
+      }, { root: deck, threshold: 0.56 });
+
+      slides.forEach((slide) => observer.observe(slide));
+      setActive(0);
+
+      window.addEventListener("keydown", (event) => {
+        const current = slides.findIndex((slide) => slide.classList.contains("active"));
+        if (event.key === "ArrowDown" || event.key === "ArrowRight" || event.key === " ") {
+          event.preventDefault();
+          slides[Math.min(current + 1, slides.length - 1)].scrollIntoView({ behavior: "smooth" });
+        }
+        if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+          event.preventDefault();
+          slides[Math.max(current - 1, 0)].scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    </script>
+  </body>
+</html>
