@@ -411,7 +411,7 @@
         border: 0.5px solid var(--color-border-primary);
         border-radius: 12px;
         padding: 12px 16px;
-        width: 148px;
+        width: 186px;
         box-sizing: border-box;
         transform: translate(-50%, -50%);
         transition: border-color 0.2s;
@@ -970,12 +970,11 @@
         <div class="slide-inner">
           <div class="eyebrow reveal">Context / education infrastructure</div>
           <h2 class="reveal">The gap in online education is not a lack of content. It is access, trust, and usability.</h2>
-          <p class="lede reveal">Lemma Math is a textbook website, not just a homework app. interactive explanations teach the concept, then problems let students practice it immediately.</p>
+          <p class="lede reveal">Lemma Math is a textbook website, not just a homework app. Interactive explanations teach the concept, then problems let students practice it immediately.</p>
           <div class="stat-row reveal">
             <div class="stat-card"><b>$1.37K</b><span>average books-and-supplies budget for full-time undergraduates</span></div>
-            <div class="stat-card"><b>$1.5M+</b><span>annual LMS spend for large institutions</span></div>
             <div class="stat-card"><b>2.3/5</b><span>G2 user rating for Pearson MyLab</span></div>
-            <div class="stat-card"><b>3.5/5</b><span>G2 user rating for WebAssign</span></div>
+            <div class="stat-card"><b>3.5/5</b><span>G2 user rating for Cengage WebAssign</span></div>
           </div>
           <p class="source-note reveal">
             Sources: <a href="https://www.bestcolleges.com/research/average-cost-of-college-textbooks-statistics/" target="_blank" rel="noreferrer">BestColleges / College Board</a>, <a href="https://www.vendr.com/marketplace/instructure" target="_blank" rel="noreferrer">Vendr Canvas pricing benchmarks</a>, <a href="https://www.g2.com/products/mylab/reviews?qs=pros-and-cons" target="_blank" rel="noreferrer">G2 MyLab reviews</a>, and <a href="https://www.g2.com/products/webassign/reviews" target="_blank" rel="noreferrer">G2 WebAssign reviews</a>.
@@ -987,9 +986,14 @@
               <p>Homework systems and textbook bundles, required to participate in many university classes, often lock behind paid access codes.</p>
             </article>
             <article class="card">
+              <span class="num">02</span>
+              <h3>Most platforms are clunky</h3>
+              <p>Cengage and Pearson's systems are outdated, clunky to use, and have too much confusing or wrong content.</p>
+            </article>
+            <article class="card">
               <span class="num">03</span>
               <h3>Too much, not too clear</h3>
-              <p>Lemma Math keeps the textbook role, but makes explanations interactive, adaptive, and directly connected to practice.</p>
+              <p>Most textbooks, like the popular Sullivan's Precalculus, are over 1,000 pages long. They contain too many unuseful exercises and confusing proofs.</p>
             </article>
           </div>
           <div class="bottom-line reveal"><strong>Bottom line:</strong> students need a free path to learn, and universities need a serious open-source alternative.</div>
@@ -1024,11 +1028,11 @@
           <p class="lede reveal">Lemma Math is not just a problem bank. It is a governed loop that turns expert foundations into verified, personalized practice.</p>
           <div id="loop-wrap" class="reveal" aria-label="Lemma Math learning loop diagram">
             <svg id="loop-canvas" aria-hidden="true"></svg>
-            <div class="lnode seed" id="n0"><small>01</small><b>Expert chapters</b><span>professor-written foundation</span></div>
-            <div class="lnode generate" id="n1"><small>02</small><b>AI content agents</b><span>explanations examples, hints, variants</span></div>
-            <div class="lnode verify" id="n2"><small>03</small><b>Formal checks on examples and textbook content</b><span>Using Lean where applicable</span></div>
+            <div class="lnode seed" id="n0"><small>01</small><b>Seed</b><span>Expert professors write foundational chapters that define the tone: short, simple, understandable. No formalisms.</span></div>
+            <div class="lnode generate" id="n1"><small>02</small><b>Generate</b><span>Fine-tuned and RAG agents create variants, hints, examples, explanations, and assessments.</span></div>
+            <div class="lnode verify" id="n2"><small>03</small><b>Check</b><span>Formalizable math is checked through Lean; ambiguous material goes to targeted review.</span></div>
             <div class="lnode practice" id="n3"><small>04</small><b>Student practice</b><span>adaptive, no-account access</span></div>
-            <div class="lnode improve" id="n4"><small>05</small><b>Learning signals</b><span>weak topics improve content</span></div>
+            <div class="lnode improve" id="n4"><small>05</small><b>Improve</b><span>Student errors, time on each question, etc., identify the explanations and practice sets to strengthen.</span></div>
           </div>
         </div>
       </section>
@@ -1037,7 +1041,7 @@
         <div class="slide-number">05 / 09</div>
         <div class="slide-inner">
           <div class="eyebrow reveal">Demo / student experience</div>
-          <h2 class="reveal">A generated worked example, checked before it reaches the student.</h2>
+          <h2 class="reveal">A generated worked example, with tutoring and analytics that adapt to the student.</h2>
           <div class="demo-grid reveal">
             <article class="demo-screen">
               <div class="browser-bar"><i></i><i></i><i></i><em>student.lemmamath.com / precalculus</em></div>
@@ -1049,7 +1053,7 @@
               <div class="steps">
                 <div class="step"><b>1</b><span data-katex-display="inline" data-katex="\text{Radical: }x-3\ge 0\Rightarrow x\ge 3.">Radical: x-3 >= 0 => x >= 3.</span></div>
                 <div class="step"><b>2</b><span data-katex-display="inline" data-katex="\text{Denominator: }x+2\ne 0\Rightarrow x\ne -2.">Denominator: x+2 != 0 => x != -2.</span></div>
-                <div class="step"><b>3</b><span data-katex-display="inline" data-katex="\text{Combine: }x\ge 3\text{ and }x\ne -2\Rightarrow x\ge 3\ (\!-2\text{ is already excluded}).">Combine: x >= 3 and x != -2 => x >= 3 (−2 is already excluded).</span></div>
+                <div class="step"><b>3</b><span data-katex-display="inline" data-katex="\text{Combine: }x\ge 3\text{ and }x\ne -2\Rightarrow x\ge 3\ (-2\text{ is already excluded}).">Combine: x >= 3 and x != -2 => x >= 3 (-2 is already excluded).</span></div>
                 <div class="step"><b>4</b><span data-katex-display="inline" data-katex="\text{Therefore domain }=[3,\infty).">Therefore domain = [3, infinity).</span></div>
               </div>
             </article>
@@ -1061,8 +1065,8 @@
               </div>
               <div class="check-card orange-card">
                 <h3>Adaptive analytics</h3>
-                <p>The platform tracks where students struggle: time-on-step, hint usage, retries, common wrong answers, and which explanations reduce error rates.</p>
-                <p>Those signals automatically tune mastery estimates and prioritize improvements: generate better distractors, add targeted hints, and rewrite unclear questions.</p>
+                <p>The platform tracks where students struggle: time-on-step, hint usage, retries, step drop-off, common wrong answers, and which explanations reduce error rates.</p>
+                <p>Those signals tune mastery estimates and item difficulty, then prioritize improvements in the content engine: better distractors, targeted hints, clearer wording, and adaptive variants. Agents then rewrite questions and update the exercise pool.</p>
               </div>
               <div class="mini-flow">
                 <span>student error</span><b>-&gt;</b><span>targeted hint</span><b>-&gt;</b><span>new variant</span>
@@ -1126,7 +1130,7 @@
             <article class="content-step">
               <span class="num">04</span>
               <h3>Improve</h3>
-              <p>Student errors and instructor feedback identify the next explanations and practice sets to strengthen.</p>
+              <p>Student errors and instructor feedback identify the next explanations and questions to rewrite.</p>
             </article>
           </div>
           <div class="bottom-line reveal" style="border-left-color:var(--orange);background:rgba(255,148,22,0.11)">The goal is not AI-written homework, but actual, easy-to-gain understanding. The goal is trustworthy open courseware that updates at software speed.</div>
@@ -1179,13 +1183,24 @@
         const wrap = document.getElementById('loop-wrap');
         const svg  = document.getElementById('loop-canvas');
         const N = 5;
-        const NODE_W = 148, NODE_H = 76;
+        const NODE_MARGIN = 6;
 
         function layout() {
+          const nodeBoxes = [];
+          let maxNodeH = 0;
+
+          for (let i = 0; i < N; i++) {
+            const el = document.getElementById('n' + i);
+            const w = el.offsetWidth;
+            const h = el.offsetHeight;
+            nodeBoxes.push({ w, h });
+            if (h > maxNodeH) maxNodeH = h;
+          }
+
           const W = wrap.offsetWidth;
           const CX = W / 2;
-          const R  = Math.min(W * 0.34, 180);
-          const H  = R * 2 + NODE_H + 80;
+          const R  = Math.min(W * 0.36, 210);
+          const H  = R * 2 + maxNodeH + 100;
           const CY = H / 2;
 
           wrap.style.height = H + 'px';
@@ -1226,18 +1241,21 @@
             const cx1 = CX + (R + pull) * Math.cos(midAngle);
             const cy1 = CY + (R + pull) * Math.sin(midAngle);
 
-            function edgePoint(pos, toX, toY) {
+            function edgePoint(pos, box, toX, toY) {
               const ex = toX - pos.x, ey = toY - pos.y;
               const sl = Math.sqrt(ex*ex + ey*ey);
               const eu = { x: ex/sl, y: ey/sl };
-              const tx = 80 / Math.abs(eu.x || 0.001);
-              const ty = 44 / Math.abs(eu.y || 0.001);
+
+              const halfW = (box.w / 2) + NODE_MARGIN;
+              const halfH = (box.h / 2) + NODE_MARGIN;
+              const tx = halfW / Math.abs(eu.x || 0.001);
+              const ty = halfH / Math.abs(eu.y || 0.001);
               const t  = Math.min(tx, ty);
               return { x: pos.x + eu.x * t, y: pos.y + eu.y * t };
             }
 
-            const start = edgePoint(a, cx1, cy1);
-            const end   = edgePoint(b, cx1, cy1);
+            const start = edgePoint(a, nodeBoxes[i], cx1, cy1);
+            const end   = edgePoint(b, nodeBoxes[(i + 1) % N], cx1, cy1);
 
             const path = document.createElementNS('http://www.w3.org/2000/svg','path');
             path.setAttribute('d', `M${start.x},${start.y} Q${cx1},${cy1} ${end.x},${end.y}`);
